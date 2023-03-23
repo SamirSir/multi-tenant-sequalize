@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 
-export const createUser = async (
+export const create = async (
     request: Request,
     response: Response,
     next: NextFunction
 ) => {
 
-    if (!request.body)
-        return response
-            .status(400)
-            .json({ message: 'body params missing' });
+    // if (!request.body)
+    //     return response
+    //         .status(400)
+    //         .json({ message: 'body params missing' });
 
     const data = {
         username: 'username',

@@ -1,20 +1,26 @@
+import express, { Request, Response, NextFunction, Express } from "express";
+import cors from "cors";
 import userRoutes from "./routes/user.routes";
 
-const express = require("express");
+const app: Express = express();
 
-const app = express();
+// console.log({ 'env': process.env });
 
-// setting
-app.set('port', process.env.port || 3000)
+// middlewares
+app.use(cors());
 
-// middleware
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", userRoutes);
 
-app.use('/', (req, resp) => {
-    resp.send('Hello from multitenant app');
-})
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+    return res.send("Hello World, This is Multitenancy world");
+});
+
+// setting
+app.set('port', process.env.PORT || 3000)
 
 app.listen(app.get('port'), () => {
     console.error(`App running on port ${app.get('port')} ...`);
