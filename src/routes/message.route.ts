@@ -1,38 +1,16 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Router } from 'express';
+import messageController from '../controllers/message.controller';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    return res.send(Object.values(req['context'].models.messages));
-});
+router.post('/', messageController.create);
 
-router.get('/:messageId', (req, res) => {
-    return res.send(req['context'].models.messages[req.params.messageId]);
-});
+router.get('/', messageController.findAll);
 
-router.post('/', (req, res) => {
-    const id = uuidv4();
-    const message = {
-        id,
-        text: req.body.text,
-        userId: req['context'].me.id,
-    };
+router.get('/:id', messageController.findById);
 
-    req['context'].models.messages[id] = message;
+router.put('/:id', messageController.update);
 
-    return res.send(message);
-});
-
-router.delete('/:messageId', (req, res) => {
-    const {
-        [req.params.messageId]: message,
-        ...otherMessages
-    } = req['context'].models.messages;
-
-    req['context'].models.messages = otherMessages;
-
-    return res.send(message);
-});
+router.delete('/:id', messageController.remove);
 
 export default router;
