@@ -2,7 +2,7 @@ import DataTypes, { Sequelize } from "sequelize";
 
 import getUserModel from "./user.model";
 import getMessageModel from "./message.model";
-import { config } from "../configs/config";
+import config from "../configs";
 
 const sequelize = new Sequelize(
     config.database1.name,
@@ -17,12 +17,6 @@ const models = {
     User: getUserModel(sequelize, DataTypes),
     Message: getMessageModel(sequelize, DataTypes),
 };
-
-Object.keys(models).forEach((key) => {
-    if ("associate" in models[key]) {
-        models[key].associate(models);
-    }
-});
 
 export { sequelize };
 
