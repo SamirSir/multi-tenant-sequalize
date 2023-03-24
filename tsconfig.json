@@ -1,14 +1,36 @@
+// {
+//   "compilerOptions": {
+//     "target": "es2016",
+//     "module": "commonjs",
+//     "rootDir": "./",
+//     "resolveJsonModule": true, /* in case you are importing JSON files */
+//     "outDir": "./build",
+//     "esModuleInterop": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "strict": true,
+//     "noImplicitAny": true,
+//     "skipLibCheck": true,
+//   }
+// }
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "rootDir": "./",
-    "resolveJsonModule": true, /* in case you are importing JSON files */
-    "outDir": "./build",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
     "skipLibCheck": true,
+    "lib": ["es5", "es6", "es2016", "esnext.asynciterable"],
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "build",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmit": false
+  },
+  "include": ["src/**/*.ts", "app/**/*.ts"],
+  "exclude": ["node_modules"],
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
   }
 }
