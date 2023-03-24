@@ -1,7 +1,7 @@
 import DataTypes, { Sequelize } from "sequelize";
 
-import getUserModel from "./user";
-import getMessageModel from "./message";
+import getUserModel from "./user.model";
+import getMessageModel from "./message.model";
 import { config } from "../configs/config";
 
 const sequelize = new Sequelize(

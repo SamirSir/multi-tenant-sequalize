@@ -1,6 +1,6 @@
-import session from './session';
-import user from './user';
-import message from './message';
+import session from './session.route';
+import user from './user.route';
+import message from './message.route';
 
 export default {
     session,

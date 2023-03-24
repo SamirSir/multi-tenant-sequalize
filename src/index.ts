@@ -4,11 +4,12 @@ import cors from "cors";
 
 import routes from './routes';
 import models, { sequelize } from './models';
+import { config } from "./configs/config";
 
 const app: Express = express();
 
 // settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.port || 3000);
 
 // * Application-Level Middleware * //
 
@@ -26,6 +27,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     //     models,
     //     me: models.users[1],
     // };
+    req['context'] = {
+        models,
+        me: models.User,
+    };
     next();
 });
 
@@ -36,8 +41,6 @@ app.use('/messages', routes.message);
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
     return res.send("Hello World, This is Multitenancy world");
 });
-
-console.log({ 'env': process.env });
 
 // mount sequalize and start the server
 const eraseDatabaseOnSync = true;
