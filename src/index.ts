@@ -20,11 +20,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Custom Middleware
-app.use((req, res, next) => {
-    req.context = {
-        models,
-        me: models.users[1],
-    };
+app.use((req: Request, res: Response, next: NextFunction) => {
+    console.log({ req });
+    // req['context'] = {
+    //     models,
+    //     me: models.users[1],
+    // };
     next();
 });
 

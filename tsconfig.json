@@ -17,18 +17,22 @@
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "skipLibCheck": true,
-    "lib": ["es5", "es6", "es2016", "esnext.asynciterable"],
+    "lib": [
+      "es5",
+      "es6",
+      "es2016",
+      "esnext.asynciterable"
+    ],
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "build",
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "noEmit": false
   },
-  "include": ["src/**/*.ts", "app/**/*.ts"],
-  "exclude": ["node_modules"],
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false

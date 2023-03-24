@@ -2,10 +2,10 @@
   "name": "multi-tenant-sequalize",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node build/src",
+    "start": "npm run build && node build",
     "local": "ts-node src",
     "local:watch": "nodemon src -e ts,json --exec 'npm run local'"
   },

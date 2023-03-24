@@ -1,4 +1,4 @@
-import Sequelize from "sequelize";
+import DataTypes, { Sequelize } from "sequelize";
 
 import getUserModel from "./user";
 import getMessageModel from "./message";
@@ -14,8 +14,8 @@ const sequelize = new Sequelize(
 );
 
 const models = {
-    User: getUserModel(sequelize, Sequelize),
-    Message: getMessageModel(sequelize, Sequelize),
+    User: getUserModel(sequelize, DataTypes),
+    Message: getMessageModel(sequelize, DataTypes),
 };
 
 Object.keys(models).forEach((key) => {

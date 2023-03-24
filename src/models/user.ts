@@ -1,4 +1,3 @@
-
 const getUserModel = (sequelize, { DataTypes }) => {
     const User = sequelize.define('user', {
         username: {
