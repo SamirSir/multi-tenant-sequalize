@@ -2,10 +2,6 @@ import { Sequelize } from "sequelize-typescript";
 import configs from ".";
 import { Messages, Tenants, Users } from "../models";
 
-// const sequelizeConnections = [];
-// configs has array lo databases
-// configs.databases.forEach(database => {
-
 // case 1: database with diffrenet schema
 // register models to specific databases
 
@@ -37,30 +33,6 @@ import { Messages, Tenants, Users } from "../models";
 // case 2: all databases has same schema
 const models = [Users, Messages];
 
-const sequelizeTenantDatabase1 = new Sequelize(
-    configs.database1.name,
-    configs.database1.username,
-    configs.database1.password,
-    {
-        host: configs.database1.host,
-        dialect: "postgres",
-        // logging: false,
-        models
-    }
-);
-
-const sequelizeTenantDatabase2 = new Sequelize(
-    configs.database2.name,
-    configs.database2.username,
-    configs.database2.password,
-    {
-        host: configs.database2.host,
-        dialect: "postgres",
-        // logging: false,
-        models
-    }
-);
-
 const commonDbModels = [Tenants];
 const sequelizeCommonDbInstance = new Sequelize(
     configs.databseCommon.name,
@@ -69,9 +41,28 @@ const sequelizeCommonDbInstance = new Sequelize(
     {
         host: configs.databseCommon.host,
         dialect: "postgres",
-        // logging: false,
+        logging: false,
         models: commonDbModels
     }
 );
 
-export { sequelizeCommonDbInstance, sequelizeTenantDatabase1, sequelizeTenantDatabase2 };
+/**
+ * @params tenantId // i.e database name
+*/
+const connectTenantDB = async (tenantId: string): Promise<Sequelize> => {
+    const tenant: Tenants = await Tenants.findOne({ where: { name: tenantId } });
+    const sequelizeTenantDb = new Sequelize(
+        tenant.dataValues.name,
+        tenant.dataValues.username,
+        tenant.dataValues.password,
+        {
+            host: tenant.dataValues.host,
+            dialect: "postgres",
+            logging: false,
+            models
+        }
+    );
+    return sequelizeTenantDb;
+}
+
+export { sequelizeCommonDbInstance, connectTenantDB };

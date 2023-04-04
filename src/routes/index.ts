@@ -1,9 +1,11 @@
-import session from './session.route';
-import user from './user.route';
-import message from './message.route';
+import sessionRoutes from './session.route';
+import userRoutes from './user.route';
+import messageRoutes from './message.route';
+import tenantRoutes from './tenant.route';
 
 export default {
-    session,
-    user,
-    message,
+    sessionRoutes,
+    userRoutes,
+    messageRoutes,
+    tenantRoutes
 };

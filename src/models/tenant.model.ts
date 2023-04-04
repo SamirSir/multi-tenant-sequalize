@@ -28,11 +28,4 @@ export class Tenants extends Model {
         defaultValue: "localhost"
     })
     host!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-        defaultValue: "postgres"
-    })
-    dialect!: string;
 }
