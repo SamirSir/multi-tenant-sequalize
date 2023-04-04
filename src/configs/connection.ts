@@ -31,9 +31,9 @@ import { Messages, Tenants, Users } from "../models";
 // });
 
 // case 2: all databases has same schema
-const models = [Users, Messages];
-
 const commonDbModels = [Tenants];
+const tenantModels = [Users, Messages];
+
 const sequelizeCommonDbInstance = new Sequelize(
     configs.databseCommon.name,
     configs.databseCommon.username,
@@ -59,7 +59,7 @@ const connectTenantDB = async (tenantId: string): Promise<Sequelize> => {
             host: tenant.dataValues.host,
             dialect: "postgres",
             logging: false,
-            models
+            models: tenantModels
         }
     );
     return sequelizeTenantDb;
