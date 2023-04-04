@@ -1,8 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import configs from ".";
-import { Databases } from "../enums/databases.enums";
-import { Messages } from "../models/message.model";
-import { Users } from "../models/user.model";
+import { Messages, Tenants, Users } from "../models";
 
 // const sequelizeConnections = [];
 // configs has array lo databases
@@ -46,7 +44,7 @@ const sequelizeTenantDatabase1 = new Sequelize(
     {
         host: configs.database1.host,
         dialect: "postgres",
-        logging: false,
+        // logging: false,
         models
     }
 );
@@ -58,9 +56,22 @@ const sequelizeTenantDatabase2 = new Sequelize(
     {
         host: configs.database2.host,
         dialect: "postgres",
-        logging: false,
+        // logging: false,
         models
     }
 );
 
-export { sequelizeTenantDatabase1, sequelizeTenantDatabase2 };
+const commonDbModels = [Tenants];
+const sequelizeCommonDbInstance = new Sequelize(
+    configs.databseCommon.name,
+    configs.databseCommon.username,
+    configs.databseCommon.password,
+    {
+        host: configs.databseCommon.host,
+        dialect: "postgres",
+        // logging: false,
+        models: commonDbModels
+    }
+);
+
+export { sequelizeCommonDbInstance, sequelizeTenantDatabase1, sequelizeTenantDatabase2 };

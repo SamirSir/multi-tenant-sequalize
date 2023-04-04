@@ -26,7 +26,7 @@
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "build",
+    "outDir": "dist",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

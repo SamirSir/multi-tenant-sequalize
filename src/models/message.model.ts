@@ -5,7 +5,6 @@ import { Model, Table, Column, DataType, Association } from "sequelize-typescrip
 export class Messages extends Model {
     @Column({
         type: DataType.STRING,
-        unique: true,
         allowNull: false,
         validate: {
             notEmpty: true,

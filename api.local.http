@@ -1,0 +1,12 @@
+# multi-tenant apis
+
+@baseUrl = localhost:3000
+
+### create user
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "name": "samir",
+    "email": "samir1@example.com" 
+}
